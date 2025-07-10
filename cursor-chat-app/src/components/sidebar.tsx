@@ -1,7 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Settings, Download, Trash2, MessageSquare, Sparkles, Brain } from "lucide-react"
+import { Settings, Trash2, MessageSquare, Brain } from "lucide-react"
 import { ExportMenu } from "./export-menu"
 
 interface Message {
