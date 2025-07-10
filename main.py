@@ -26,11 +26,14 @@ def home():
 async def chat(request: Request):
     body = await request.json()
     user_input = body.get("message", "")
+    temperature = body.get("temperature", 0.7)
+    model = body.get("model", "deepseek-ai/DeepSeek-R1-0528-Turbo")
 
     try:
         chat_completion = openai.chat.completions.create(
-            model="deepseek-ai/DeepSeek-R1-0528-Turbo",
+            model=model,
             messages=[{"role": "user", "content": user_input}],
+            temperature=temperature,
         )
 
         return {"response": chat_completion.choices[0].message.content}
