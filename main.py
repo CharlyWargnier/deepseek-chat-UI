@@ -4,14 +4,14 @@ from fastapi.middleware.cors import CORSMiddleware
 from openai import OpenAI
 from dotenv import load_dotenv
 
-# Charger les variables d'environnement
+# Load environment variables
 load_dotenv()
 
 app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Pour le dev, à restreindre en prod
+    allow_origins=["*"],  # For dev only, restrict in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -43,4 +43,4 @@ async def chat(request: Request):
 
         return {"response": chat_completion.choices[0].message.content}
     except Exception as e:
-        return {"response": f"Erreur: {str(e)}"} 
+        return {"response": f"Error: {str(e)}"} 
