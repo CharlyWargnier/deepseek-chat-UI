@@ -1,6 +1,11 @@
+import os
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from openai import OpenAI
+from dotenv import load_dotenv
+
+# Charger les variables d'environnement
+load_dotenv()
 
 app = FastAPI()
 
@@ -14,7 +19,7 @@ app.add_middleware(
 
 # Create an OpenAI client with DeepInfra token and endpoint (official implementation)
 openai = OpenAI(
-    api_key="YOUR_DEEPINFR_API_KEY",
+    api_key=os.getenv("DEEPINFRA_TOKEN"),
     base_url="https://api.deepinfra.com/v1/openai",
 )
 
