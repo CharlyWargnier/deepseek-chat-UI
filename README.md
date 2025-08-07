@@ -1,146 +1,76 @@
 # 🧠 DeepSeek Chat Interface
 
-A modern, feature-rich chat interface for DeepSeek AI models with advanced reasoning capabilities.
+*Built by Charlie Warnier to showcase DeepSeek's advanced reasoning capabilities and Render's powerful deployment features.*
 
-## ✨ Features
+**📱 Full Twitter Thread:** [See the complete development process and showcase](#) <!-- Replace with actual Twitter thread link -->
 
-### 🎨 Modern UI Design
-- **Gradient backgrounds** with glassmorphism effects
-- **Branded header** with DeepSeek logo
-- **Sidebar navigation** with intuitive controls
-- **Responsive design** that works on all devices
+A modern chat interface for DeepSeek AI models with advanced reasoning capabilities and collapsible thinking sections.
 
-### 🤖 AI Capabilities  
-- **DeepSeek-R1** integration with reasoning model support
-- **Collapsible thinking sections** to view AI reasoning process
-- **Multiple model support** (DeepSeek, Llama, Mixtral, WizardLM)
+## ✨ Key Features
+
+- **DeepSeek-R1** integration with visible reasoning process
+- **Modern UI** with glassmorphism design and responsive layout
+- **Multiple models** support (DeepSeek, Llama, Mixtral, WizardLM)
+- **Export functionality** (JSON, TXT, Markdown)
 - **Temperature control** for response creativity
 
-### 🛠️ Advanced Features
-- **Markdown rendering** for properly formatted responses
-- **Export functionality** (JSON, TXT, Markdown formats)
-- **Chat history management** with clear/reset options
-- **Real-time settings** with model switching
-
-## 🚀 Quick Start
+## 🚀 Quick Setup
 
 ### Prerequisites
-- Node.js 18+ 
-- Python 3.10+
-- DeepInfra API key ([get one here](https://deepinfra.com))
+- Node.js 18+ and Python 3.10+
+- **DeepInfra API key** → [Create account here](https://deepinfra.com)
 
-### Installation
+> 📝 **Note:** After creating your DeepInfra account, go to your dashboard to generate an API key. You'll need this for the next steps.
 
-1. **Clone the repository**
+### Installation Steps
+
+1. **Clone and setup backend**
 ```bash
-git clone https://github.com/YOUR_USERNAME/deepseek-chat-interface.git
-cd deepseek-chat-interface
-```
-
-2. **Setup Backend (FastAPI)**
-```bash
+git clone https://github.com/CharlyWargnier/deepseek-chat-UI.git
+cd deepseek-chat-UI
 pip install -r requirements.txt
-# Edit main.py and add your DeepInfra API key
-python -m uvicorn main:app --reload --port 8000
 ```
 
-3. **Setup Frontend (Next.js)**
+2. **Configure API key in `.env` file**
 ```bash
+# The .env file is already in the repository
+# Simply open it and add your DeepInfra API key:
+DEEPINFRA_API_KEY=your_actual_api_key_here
+```
+
+> 📝 **Note:** Replace `your_actual_api_key_here` with your actual DeepInfra API key (no quotes needed)
+
+3. **Start the application**
+```bash
+# Terminal 1 - Backend (from project root directory)
+python -m uvicorn main:app --reload --port 8000
+
+# Terminal 2 - Frontend (open new terminal, from project root)
 cd cursor-chat-app
 npm install
 npm run dev
 ```
 
-4. **Open your browser**
-Navigate to `http://localhost:3000`
+4. **Open** `http://localhost:3000`
 
-## 🔧 Configuration
-
-### API Key Setup
-Replace the API key in `main.py`:
-```python
-openai = OpenAI(
-    api_key="YOUR_DEEPINFRA_API_KEY_HERE",
-    base_url="https://api.deepinfra.com/v1/openai",
-)
-```
-
-### Available Models
-- DeepSeek-R1-0528-Turbo (reasoning)
-- Meta-Llama-3.1-70B-Instruct  
-- Meta-Llama-3.1-8B-Instruct
-- Microsoft/WizardLM-2-8x22B
-- Mistral/Mixtral-8x7B-Instruct
+> ⚠️ **Important:** Keep both terminals running. The backend (port 8000) and frontend (port 3000) must both be active.
 
 ## 📦 Tech Stack
 
-### Frontend
-- **Next.js 15** - React framework
-- **shadcn/ui** - Modern component library  
-- **Tailwind CSS** - Utility-first styling
-- **Lucide React** - Beautiful icons
-- **React Markdown** - Markdown rendering
+**Frontend:** Next.js 15, shadcn/ui, Tailwind CSS, React Markdown  
+**Backend:** FastAPI, OpenAI SDK
 
-### Backend  
-- **FastAPI** - Modern Python web framework
-- **OpenAI Python SDK** - API integration
-- **CORS middleware** - Cross-origin support
+## 🚀 Deploy on Render
 
-## 🎯 Architecture
+1. Fork this repository to your own GitHub account
+2. Connect your GitHub repository to Render
+3. Create **Web Service** (FastAPI backend) and **Static Site** (Next.js frontend)
+4. In Render dashboard, set the environment variable:
+   - Key: `DEEPINFRA_API_KEY`
+   - Value: Your actual DeepInfra API key
+5. Deploy both services
 
-```
-├── main.py                 # FastAPI backend server
-├── requirements.txt        # Python dependencies  
-└── cursor-chat-app/        # Next.js frontend
-    ├── src/
-    │   ├── app/            # Next.js app router
-    │   └── components/     # React components
-    │       ├── chat-interface.tsx
-    │       ├── reasoning-message.tsx
-    │       ├── settings-panel.tsx
-    │       ├── sidebar.tsx
-    │       └── ui/         # shadcn/ui components
-    └── package.json
-```
+> 💡 **Tip:** The Web Service should point to the root directory (main.py), and the Static Site should point to the `cursor-chat-app` folder.
 
-## 🌟 Key Components
-
-- **ReasoningMessage**: Displays collapsible thinking sections for reasoning models
-- **SettingsPanel**: Temperature and model selection controls
-- **ExportMenu**: Multiple export format options
-- **BrandedHeader**: Professional header with DeepSeek branding
-- **Sidebar**: Navigation and chat management
-
-## 🚀 Deployment
-
-### Render.com (Recommended)
-1. Connect your GitHub repository to Render
-2. Create a **Web Service** for the backend (FastAPI)
-3. Create a **Static Site** for the frontend (Next.js)
-4. Set environment variables in Render dashboard
-
-### Environment Variables
-- `DEEPINFRA_TOKEN`: Your DeepInfra API key
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **DeepSeek AI** for the amazing reasoning models
-- **shadcn/ui** for the beautiful component library
-- **Vercel** for Next.js framework
-- **FastAPI** for the excellent Python web framework
 
 ---
-
-Made with ❤️ for the AI community 
